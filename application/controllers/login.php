@@ -37,6 +37,7 @@ class Login extends CI_Controller {
         else 
         {
             $data = array(
+                
                 'username' => $this->input->post('username'),
                 'password' => $this->input->post('password')
             );
@@ -48,6 +49,7 @@ class Login extends CI_Controller {
                 // Add user data in session
                 $session_data = array(
                     'username' => $result[1]->username,
+                    'id' => $result[1]->idUsuario,
                 );
                 $this->session->set_userdata('logged_in', $session_data);
                 redirect('admin');

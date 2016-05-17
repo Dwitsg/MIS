@@ -20,6 +20,24 @@
         ?>
     </select>
   </div>
+  <div class="form-group">
+    <label for="exampleInputName2">Vendedor</label>
+    <select name = "vendedor" class="form-control">
+        <?php 
+            foreach ($selectven as $value) { ?>
+                <?php if($value->idUsuario == $dataedit[0]->Usuario_idUsuario) { ?>
+                <option selected value="<?php echo $value->idUsuario ?>"><?php echo $value->username ?></option>
+            <?php 
+            }
+            else { ?>
+                <option  value="<?php echo $value->idUsuario ?>"><?php echo $value->username ?></option>
+               <?php
+            }
+                
+            }
+        ?>
+    </select>
+  </div>
   <button type="submit" class="btn btn-default">
       Nueva venta
   </button>
@@ -40,8 +58,8 @@
                 <td><?php echo $value->total; ?></td>
                 <td><?php echo $value->nroautorizacion; ?></td>
                 <td>
-                    <a href="<?php echo base_url('index.php/producto/delete')."/".$value->idProducto; ?>" type="button" class="btn btn-danger">Eliminar</a>
-                    <a href="<?php echo base_url('index.php/producto/edit')."/".$value->idProducto; ?>" type="button" class="btn btn-primary">Editar</a>
+                    <a href="<?php echo base_url('index.php/venta/delete')."/".$value->idVenta; ?>" type="button" class="btn btn-danger">Eliminar</a>
+                    <a href="<?php echo base_url('index.php/venta/edit')."/".$value->idVenta; ?>" type="button" class="btn btn-primary">Editar</a>
                 </td>
             </tr>
         <?php } ?>
