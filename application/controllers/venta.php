@@ -29,7 +29,7 @@ class Venta extends CI_Controller {
         $data = $this->input->post();
         if(isset($data)){
             $ventados = $data['ventados'];
-            $ventafecha = now();
+            $ventafecha = date("Y/m/d h:i:sa") ;
             $ventatotal = 0;
             $usuario = $data['vendedor'];
             $id = $this->Model_Venta->insert($ventados, $ventafecha, $ventatotal, $usuario);
@@ -89,8 +89,7 @@ class Venta extends CI_Controller {
     }
     
     public function update($id){
-  
-            $fecha = new DateTime('now');
+            $fecha = date("Y/m/d h:i:sa");
             $this->Model_Venta->update($id, $fecha);
             redirect('venta');
         

@@ -13,11 +13,11 @@
         <?php 
             foreach ($selectcli as $value) { ?>
                 <?php if($value->idCliente == $dataedit[0]->Cliente_idCliente) { ?>
-                <option selected value="<?php echo $value->idCliente ?>"><?php echo $value->nombre ?></option>
+                <option selected value="<?php echo $value->idCliente ?>"><?php echo $value->nombre_cliente ?></option>
             <?php 
             }
             else { ?>
-                <option  value="<?php echo $value->idCliente ?>"><?php echo $value->nombre ?></option>
+                <option  value="<?php echo $value->idCliente ?>"><?php echo $value->nombre_cliente ?></option>
                <?php
             }
                 
