@@ -170,13 +170,13 @@
             <i class="fa fa-angle-left pull-right"></i>
           </a>
           <ul class="treeview-menu">
-            <li><a href="rol"><i class="fa fa-circle-o"></i> Rol</a></li>
-            <li><a href="categoria"><i class="fa fa-circle-o"></i> Categorias de productos</a></li>
-            <li><a href="producto"><i class="fa fa-circle-o"></i> Productos</a></li>
-            <li><a href="persona"><i class="fa fa-circle-o"></i> Personas</a></li>
-            <li><a href="empresa"><i class="fa fa-circle-o"></i> Empresas</a></li>
-            <li><a href="tipocliente"><i class="fa fa-circle-o"></i> Tipo Cliente</a></li>
-            <li><a href="cliente"><i class="fa fa-circle-o"></i> Clientes</a></li>
+            <li><a href="<?php echo base_url("index.php/rol")?>"><i class="fa fa-circle-o"></i> Rol</a></li>
+            <li><a href="<?php echo base_url("index.php/categoria")?>"><i class="fa fa-circle-o"></i> Categorias de productos</a></li>
+            <li><a href="<?php echo base_url("index.php/producto")?>"><i class="fa fa-circle-o"></i> Productos</a></li>
+            <li><a href="<?php echo base_url("index.php/persona")?>"><i class="fa fa-circle-o"></i> Personas</a></li>
+            <li><a href="<?php echo base_url("index.php/empresa")?>"><i class="fa fa-circle-o"></i> Empresas</a></li>
+            <li><a href="<?php echo base_url("index.php/tipocliente")?>"><i class="fa fa-circle-o"></i> Tipo Cliente</a></li>
+            <li><a href="<?php echo base_url("index.php/cliente")?>"><i class="fa fa-circle-o"></i> Clientes</a></li>
           </ul>
         </li>
         <!--<li class="treeview">
@@ -241,8 +241,8 @@
             <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
           </ul>
         </li>-->
-        <li><a href="dosificacion"><i class="fa fa-book"></i> <span>Dosificacion</span></a></li>
-        <li><a href="venta"><i class="fa fa-cart-plus"></i> <span>Ventas</span></a></li>
+        <li><a href="<?php echo base_url("index.php/dosificacion")?>"><i class="fa fa-book"></i> <span>Dosificacion</span></a></li>
+        <li><a href="<?php echo base_url("index.php/venta")?>"><i class="fa fa-cart-plus"></i> <span>Ventas</span></a></li>
         <!--<li class="header">LABELS</li>
         <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
         <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>

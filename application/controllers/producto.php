@@ -28,7 +28,8 @@ class Producto extends CI_Controller {
             $prodescription = $data['prodescription'];
             $proprice = $data['proprice'];
             $procat = $data['procat'];
-            $this->Model_Producto->insert($proname, $prodescription, $proprice, $procat);
+            $procantidad = $data['procantidad'];
+            $this->Model_Producto->insert($proname, $prodescription, $proprice, $procat, $procantidad);
             redirect('producto');
         }
     }
@@ -61,7 +62,8 @@ class Producto extends CI_Controller {
             $prodescription = $data['prodescription'];
             $proprice = $data['proprice'];
             $procat = $data['procat'];
-            $this->Model_Producto->update($id,$proname, $prodescription, $proprice, $procat);
+                        $procantidad = $data['procantidad'];
+            $this->Model_Producto->update($id,$proname, $prodescription, $proprice, $procat, $procantidad);
             redirect('producto');
         }
     }

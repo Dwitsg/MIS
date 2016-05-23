@@ -2,8 +2,8 @@
 
 
 <?php if(isset($dataedit)) {echo form_open('rol/update'."/".$dataedit[0]->idRol, 'class="row form-inline"');} else { echo form_open('venta/insertpro', 'class="row form-inline"');} ?>
-<fieldset>
-  <div class="form-group">
+<fieldset style="margin : 10px">
+  <div class="form-group" style="visibility: hidden">
     <label for="exampleInputName2">Nro Venta</label>
     <input  type="text" name="nrofactura" class="form-control" id="exampleInputName2" value="<?php if(isset($id)){ echo $id;} ?>" />
   </div>
@@ -25,6 +25,9 @@
         ?>
     </select>
   </div>
+  <div class="form-group">
+      <a href="<?php echo base_url('index.php/cliente/indef')."/".$id; ?>" type="button" class="btn btn-primary">Nuevo cliente</a>
+  </div>
   </fieldset> 
   <fieldset>
       
@@ -38,7 +41,7 @@
             <?php 
             }
             else { ?>
-                <option  value="<?php echo $value->idProducto ?>"><?php echo $value->nombre ?></option>
+                <option  value="<?php echo $value->idProducto ?>"><?php echo $value->descripcion.": ".$value->nombre ?></option>
                <?php
             }
                 

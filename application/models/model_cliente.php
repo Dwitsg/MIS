@@ -22,7 +22,7 @@ Class Model_Cliente extends CI_Model {
     public function insert($cliname, $clinit, $clitype){
         $this->load->database();  
         $data = array(
-                'nombre' => $cliname,
+                'nombre_cliente' => $cliname,
                 'cedula' => $clinit,
                 'Tipo_Cliente_idTipo_Cliente' => $clitype,
         );    

@@ -68,7 +68,7 @@
                             </tr>
                             <tr>
                                 <td><b>FACTURA No.:</b></td>
-                                <td align="left"><?php echo $selectini[0]->idVenta; ?></td>
+                                <td align="left"><?php echo $selectini[0]->nroFactura; ?></td>
                             </tr>
                             <tr>
                                 <td><b>AUTORIZACION No.:</b></td>
@@ -134,7 +134,7 @@
 
         <div class='row'>
             <div class='col-xs-8 css-pdf_left'>
-                <p>Son: <b><?php echo $letra; ?> 00/100 Bolivianos</b></p>
+                <p>Son: <b><?php echo $letra."  ".$decimal; ?>/100 Bolivianos</b></p>
 
                 <p>Código de control: <b><?php echo $codigo ?></b></p>
             </div>

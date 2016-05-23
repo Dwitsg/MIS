@@ -21,6 +21,15 @@ class Cliente extends CI_Controller {
         $this->load->view("template", $data);
 	}
     
+    public function indef($id)
+	{
+        $data['content'] = "cliente/index";
+        $data['selectcat'] = $this->Model_Cliente->selectcat();
+        $data['select'] = $this->Model_Cliente->select();
+        $data['id'] = $id;
+        $this->load->view("template", $data);
+	}
+    
     public function insert(){
         $data = $this->input->post();
         if(isset($data)){
@@ -29,6 +38,17 @@ class Cliente extends CI_Controller {
             $clitype = $data['clitype'];
             $this->Model_Cliente->insert($cliname, $clinit, $clitype);
             redirect('cliente');
+        }
+    }
+    
+    public function inserf($id){
+        $data = $this->input->post();
+        if(isset($data)){
+            $cliname = $data['cliname'];
+            $clinit = $data['clinit'];
+            $clitype = $data['clitype'];
+            $this->Model_Cliente->insert($cliname, $clinit, $clitype);
+            redirect(base_url('index.php/venta/detalle/'.$id));
         }
     }
     

@@ -16,6 +16,10 @@
     <input type="text" name="proprice" class="form-control" id="exampleInputName2" value="<?php if(isset($dataedit)){ echo $dataedit[0]->precio;} ?>" />
   </div>
   <div class="form-group">
+    <label for="exampleInputName2">Cantidad</label>
+    <input type="text" name="procantidad" class="form-control" id="exampleInputName2" value="<?php if(isset($dataedit)){ echo $dataedit[0]->cantidad;} ?>" />
+  </div>
+  <div class="form-group">
     <label for="exampleInputName2">Categoria</label>
     <select name = "procat" class="form-control">
         <?php 
@@ -50,6 +54,7 @@
         <th>Descripcion</th>
         <th>Precio</th>
         <th>Categoria</th>
+            <th>Cantidad</th>
         <th>Acciones</th>
     </theader>    
     
@@ -60,6 +65,7 @@
                 <td><?php echo $value->descripcionpro; ?></td>
                 <td><?php echo $value->precio; ?></td>
                 <td><?php echo $value->descripcion; ?></td>
+                <td><?php echo $value->cantidad; ?></td>
                 <td>
                     <a href="<?php echo base_url('index.php/producto/delete')."/".$value->idProducto; ?>" type="button" class="btn btn-danger">Eliminar</a>
                     <a href="<?php echo base_url('index.php/producto/edit')."/".$value->idProducto; ?>" type="button" class="btn btn-primary">Editar</a>

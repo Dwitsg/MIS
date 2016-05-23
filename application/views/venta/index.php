@@ -48,6 +48,7 @@
         <th>Fecha</th>
         <th>Total</th>
         <th>Dosificacion</th>
+        <th>Anulado</th>
         <th>Acciones</th>
     </theader>    
     
@@ -57,9 +58,11 @@
                 <td><?php echo $value->fecha; ?></td>
                 <td><?php echo $value->total; ?></td>
                 <td><?php echo $value->nroautorizacion; ?></td>
+                <td><?php if ($value->anulado == 0 ) { echo "No anulado"; } else { echo "Anulado"; } ?></td>
                 <td>
                     <a href="<?php echo base_url('index.php/venta/delete')."/".$value->idVenta; ?>" type="button" class="btn btn-danger">Eliminar</a>
-                    <a href="<?php echo base_url('index.php/venta/edit')."/".$value->idVenta; ?>" type="button" class="btn btn-primary">Editar</a>
+                    <a href="<?php echo base_url('index.php/venta/detalle')."/".$value->idVenta; ?>" type="button" class="btn btn-primary">Ver</a>
+                    <a href="<?php if ($value->anulado == 0 ){echo base_url('index.php/venta/anular')."/".$value->idVenta;} else {echo base_url('index.php/venta/noanular')."/".$value->idVenta;} ?>" type="button" class="btn btn-primary"><?php if ($value->anulado == 0 ) { echo "Anular"; } else { echo "Revertir"; } ?></a>
                 </td>
             </tr>
         <?php } ?>

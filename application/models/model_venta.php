@@ -5,7 +5,7 @@ Class Model_Venta extends CI_Model {
     public function select() 
     {    
         $this->load->database();  
-        $query = $this->db->query("SELECT * FROM venta p inner join dosificacion c on p.dosificacion_id = c.id ");
+        $query = $this->db->query("SELECT * FROM venta p inner join dosificacion c on p.dosificacion_id = c.id ORDER BY p.nroFactura DESC");
         $this->db->close();
         return $query->result();
     }
@@ -28,9 +28,7 @@ Class Model_Venta extends CI_Model {
     
     public function selectprod(){
         $this->load->database();  
-        $this->db->select('*');
-        $this->db->from('producto');
-        $query = $this->db->get(); 
+        $query = $this->db->query("SELECT * FROM producto p INNER JOIN categoria c on p.Categoria_idCategoria = c.idCategoria ORDER BY c.descripcion,p.nombre");
         $this->db->close();
         return $query->result(); 
     }
@@ -65,12 +63,14 @@ Class Model_Venta extends CI_Model {
     
     
     public function insert($ventados, $ventafecha, $ventatotal, $usuario){
+        $seda = $this->select();
         $this->load->database();  
         $data = array(
                 'dosificacion_id' => $ventados,
                 'fecha' => $ventafecha,
                 'total' => $ventatotal,
-                'Usuario_idUsuario' => $usuario,
+                'Usuario_idUsuario' => $usuario,                
+                'nroFactura' => $seda[0]->nroFactura + 1,
         );    
         
         $this->db->insert('venta', $data);
@@ -132,6 +132,32 @@ Class Model_Venta extends CI_Model {
         $data = array(
                 'total' => $datss,
                 
+        );     
+        $this->db->where('idVenta', $id);
+        $this->db->update('venta', $data);
+    }
+    
+    
+   public function update3($id){
+        $datas =  $this->selectpro($id);
+        $datss = 0;
+        foreach ($datas as $value) {
+           $datss += $value->subtotal;
+        }
+        $this->load->database(); 
+        $data = array(
+                'total' => $datss,
+                'anulado' => 0,
+        );     
+        $this->db->where('idVenta', $id);
+        $this->db->update('venta', $data);
+    }
+    
+    public function update2($id){
+        $this->load->database(); 
+        $data = array(
+                'total' => 0,
+                'anulado' => 1,         
         );     
         $this->db->where('idVenta', $id);
         $this->db->update('venta', $data);

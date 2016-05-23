@@ -19,12 +19,13 @@ Class Model_Producto extends CI_Model {
         return $query->result(); 
     }
     
-    public function insert($proname, $prodescription, $proprice, $procat){
+    public function insert($proname, $prodescription, $proprice, $procat, $procantidad){
         $this->load->database();  
         $data = array(
                 'nombre' => $proname,
                 'descripcionpro' => $prodescription,
                 'precio' => $proprice,
+                'cantidad' => $procantidad,
                 'Categoria_idCategoria' => $procat,
         );    
         
@@ -51,12 +52,13 @@ Class Model_Producto extends CI_Model {
        return $query->result();
     }
     
-    public function update($id,$proname, $prodescription, $proprice, $procat){
+    public function update($id,$proname, $prodescription, $proprice, $procat, $procantidad){
         $this->load->database(); 
         $data = array(
                 'nombre' => $proname,
                 'descripcionpro' => $prodescription,
                 'precio' => $proprice,
+                'cantidad' => $procantidad,
                 'Categoria_idCategoria' => $procat,
         );     
         $this->db->where('idProducto', $id);

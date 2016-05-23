@@ -26,7 +26,7 @@ CREATE TABLE `categoria` (
   `idCategoria` int(11) NOT NULL AUTO_INCREMENT,
   `descripcion` varchar(25) DEFAULT NULL,
   PRIMARY KEY (`idCategoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -35,7 +35,7 @@ CREATE TABLE `categoria` (
 
 LOCK TABLES `categoria` WRITE;
 /*!40000 ALTER TABLE `categoria` DISABLE KEYS */;
-INSERT INTO `categoria` VALUES (2,'Tecnologia'),(3,'Comida'),(4,'Cereal');
+INSERT INTO `categoria` VALUES (2,'Tecnologia'),(3,'Comida'),(4,'Cereal'),(5,'Alimentos');
 /*!40000 ALTER TABLE `categoria` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -54,7 +54,7 @@ CREATE TABLE `cliente` (
   PRIMARY KEY (`idCliente`),
   KEY `fk_Cliente_Tipo_Cliente1_idx` (`Tipo_Cliente_idTipo_Cliente`),
   CONSTRAINT `fk_Cliente_Tipo_Cliente1` FOREIGN KEY (`Tipo_Cliente_idTipo_Cliente`) REFERENCES `tipo_cliente` (`idTipo_Cliente`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -63,7 +63,7 @@ CREATE TABLE `cliente` (
 
 LOCK TABLES `cliente` WRITE;
 /*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
-INSERT INTO `cliente` VALUES (1,'Barahona','2709905',1);
+INSERT INTO `cliente` VALUES (1,'Barahona','2709905',1),(2,'Quiroga','6872541',1),(3,'Perez','5521542',2),(4,'Luna','2121547',2),(5,'Quispe','2421452',1);
 /*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -89,7 +89,7 @@ CREATE TABLE `detalle_venta` (
   CONSTRAINT `fk_Detalle_Venta_Cliente1` FOREIGN KEY (`Cliente_idCliente`) REFERENCES `cliente` (`idCliente`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_Detalle_Venta_Producto1` FOREIGN KEY (`Producto_idProducto`) REFERENCES `producto` (`idProducto`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_Detalle_Venta_Venta1` FOREIGN KEY (`Venta_idVenta`) REFERENCES `venta` (`idVenta`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -98,7 +98,7 @@ CREATE TABLE `detalle_venta` (
 
 LOCK TABLES `detalle_venta` WRITE;
 /*!40000 ALTER TABLE `detalle_venta` DISABLE KEYS */;
-INSERT INTO `detalle_venta` VALUES (10,5000.00,'',10,1,1,1),(11,5000.00,'',10,4,1,1);
+INSERT INTO `detalle_venta` VALUES (10,5000.00,'',10,1,1,1),(13,40.00,'',20,10,1,3),(14,10000.00,'',20,10,1,2);
 /*!40000 ALTER TABLE `detalle_venta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -201,10 +201,11 @@ CREATE TABLE `producto` (
   `descripcionpro` varchar(45) DEFAULT NULL,
   `precio` decimal(18,2) DEFAULT NULL,
   `Categoria_idCategoria` int(11) NOT NULL,
+  `cantidad` int(11) DEFAULT '0',
   PRIMARY KEY (`idProducto`),
   KEY `fk_Producto_Categoria1_idx` (`Categoria_idCategoria`),
   CONSTRAINT `fk_Producto_Categoria1` FOREIGN KEY (`Categoria_idCategoria`) REFERENCES `categoria` (`idCategoria`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -213,7 +214,7 @@ CREATE TABLE `producto` (
 
 LOCK TABLES `producto` WRITE;
 /*!40000 ALTER TABLE `producto` DISABLE KEYS */;
-INSERT INTO `producto` VALUES (1,'Tablet android','Android 1.0',500.00,3);
+INSERT INTO `producto` VALUES (1,'Tablet android','Android 1.0',500.00,2,10),(2,'Leche','Leche en polvo',500.00,3,10),(3,'Azucar','Azucar 10g',2.00,5,50),(4,'Lechuga','Lechuga en bolsa',10.00,5,30);
 /*!40000 ALTER TABLE `producto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -262,7 +263,7 @@ CREATE TABLE `tipo_cliente` (
 
 LOCK TABLES `tipo_cliente` WRITE;
 /*!40000 ALTER TABLE `tipo_cliente` DISABLE KEYS */;
-INSERT INTO `tipo_cliente` VALUES (1,'Juridico'),(2,'Naturals');
+INSERT INTO `tipo_cliente` VALUES (1,'Juridico'),(2,'Natural');
 /*!40000 ALTER TABLE `tipo_cliente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -310,12 +311,14 @@ CREATE TABLE `venta` (
   `total` decimal(18,2) DEFAULT NULL,
   `Usuario_idUsuario` int(11) NOT NULL,
   `dosificacion_id` int(11) NOT NULL,
+  `anulado` int(11) DEFAULT NULL,
+  `nroFactura` int(11) DEFAULT NULL,
   PRIMARY KEY (`idVenta`),
   KEY `fk_Venta_Usuario1_idx` (`Usuario_idUsuario`),
   KEY `fk_venta_dosificacion1_idx` (`dosificacion_id`),
   CONSTRAINT `fk_Venta_Usuario1` FOREIGN KEY (`Usuario_idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_venta_dosificacion1` FOREIGN KEY (`dosificacion_id`) REFERENCES `dosificacion` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -324,7 +327,7 @@ CREATE TABLE `venta` (
 
 LOCK TABLES `venta` WRITE;
 /*!40000 ALTER TABLE `venta` DISABLE KEYS */;
-INSERT INTO `venta` VALUES (1,'2016-05-19 00:00:00',5000.00,1,0),(4,'2016-05-19 01:43:08',0.00,1,0);
+INSERT INTO `venta` VALUES (1,'2016-05-19 00:00:00',5000.00,1,0,0,1),(10,'2016-05-23 04:39:51',10040.00,1,0,NULL,2);
 /*!40000 ALTER TABLE `venta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -345,4 +348,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-19  7:26:06
+-- Dump completed on 2016-05-23  1:03:50

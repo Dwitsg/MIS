@@ -50,6 +50,18 @@ class Venta extends CI_Controller {
         }       
     }
     
+    
+    public function anular($id){
+            $this->Model_Venta->update2($id);
+            redirect('venta');       
+    }
+    
+    
+   public function noanular($id){
+            $this->Model_Venta->update3($id);
+            redirect('venta');       
+    }
+    
     public function detalle($id){
             $data['content'] = "venta/detalle";
             $data['select'] = $this->Model_Venta->selectpro($id);
@@ -91,7 +103,7 @@ class Venta extends CI_Controller {
     public function update($id){
             $fecha = date("Y/m/d h:i:sa");
             $this->Model_Venta->update($id, $fecha);
-            redirect('venta');
+            redirect(base_url('index.php/factura/index/'.$id));
         
     }
 }

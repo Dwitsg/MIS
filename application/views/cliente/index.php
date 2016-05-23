@@ -1,7 +1,7 @@
 <h1>Gestion de Clientes</h1>
 
 
-<?php if(isset($dataedit)) {echo form_open('cliente/update'."/".$dataedit[0]->idCliente, 'class="form-inline"');} else { echo form_open('cliente/insert', 'class="form-inline"');} ?>
+<?php if(isset($dataedit)) {echo form_open('cliente/update'."/".$dataedit[0]->idCliente, 'class="form-inline"');} elseif(isset($id)) { echo form_open('cliente/inserf/'.$id, 'class="form-inline"');} else {echo form_open('cliente/insert/', 'class="form-inline"');} ?>
 
   <div class="form-group">
     <label for="exampleInputName2">Nombre</label>
@@ -50,7 +50,7 @@
     <tbody>
         <?php foreach ($select as $value) { ?>
             <tr>
-                <td><?php echo $value->nombre; ?></td>
+                <td><?php echo $value->nombre_cliente; ?></td>
                 <td><?php echo $value->cedula; ?></td>
                 <td><?php echo $value->descripcion; ?></td>
                 <td>
